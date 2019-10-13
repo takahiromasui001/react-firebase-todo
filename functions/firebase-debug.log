@@ -1,0 +1,22 @@
+[debug] [2019-10-13T07:01:01.957Z] ----------------------------------------------------------------------
+[debug] [2019-10-13T07:01:01.958Z] Command:       /Users/kp/.anyenv/envs/nodenv/versions/12.7.0/bin/node /usr/local/bin/firebase serve --only hosting
+[debug] [2019-10-13T07:01:01.958Z] CLI Version:   7.5.0
+[debug] [2019-10-13T07:01:01.958Z] Platform:      darwin
+[debug] [2019-10-13T07:01:01.958Z] Node Version:  v12.7.0
+[debug] [2019-10-13T07:01:01.959Z] Time:          Sun Oct 13 2019 16:01:01 GMT+0900 (GMT+09:00)
+[debug] [2019-10-13T07:01:01.959Z] ----------------------------------------------------------------------
+[debug] 
+[debug] [2019-10-13T07:01:01.970Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2019-10-13T07:01:01.971Z] > authorizing via signed-in user
+[debug] [2019-10-13T07:01:01.971Z] [iam] checking project react-firebase-todo-db7c5 for permissions ["firebase.projects.get"]
+[debug] [2019-10-13T07:01:01.973Z] >>> HTTP REQUEST POST https://cloudresourcemanager.googleapis.com/v1/projects/react-firebase-todo-db7c5:testIamPermissions  
+
+[debug] [2019-10-13T07:01:03.060Z] <<< HTTP RESPONSE 200
+[debug] [2019-10-13T07:01:03.062Z] >>> HTTP REQUEST GET https://firebase.googleapis.com/v1beta1/projects/react-firebase-todo-db7c5  
+ 
+[debug] [2019-10-13T07:01:03.810Z] <<< HTTP RESPONSE 200
+[debug] [2019-10-13T07:01:03.811Z] >>> HTTP REQUEST GET https://firebase.googleapis.com/v1beta1/projects/react-firebase-todo-db7c5/webApps/-/config  
+ 
+[debug] [2019-10-13T07:01:04.898Z] <<< HTTP RESPONSE 200
+[info] i  hosting: Serving hosting files from: build
+[info] ✔  hosting: Local server: http://localhost:5000
