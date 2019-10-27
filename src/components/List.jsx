@@ -1,4 +1,5 @@
 import React from "react";
+import "./List.scss";
 
 let style = {
   maxWidth: "700px"
@@ -9,27 +10,29 @@ let btn = {
 };
 
 const List = props => (
-  <ul>
-    {props.todos.map((todo, i) => {
-      return (
-        <li
-          key={i}
-          className="siimple-list-item siimple--bg-white"
-          style={style}
-        >
-          {todo.title}
-          <span
-            className="siimple-tag siimple-tag--error siimple-hover"
-            style={btn}
-            onClick={() => props.handleRemove(i)}
+  <div className="todo-list">
+    <ul>
+      {props.todos.map((todo, i) => {
+        return (
+          <li
+            key={i}
+            className="siimple-list-item siimple--bg-white siimple--display-flex"
+            style={style}
           >
-            Delete
-          </span>
-        </li>
-      );
-    })}
-    ;
-  </ul>
+            <div className="title">{todo.title}</div>
+            <div
+              className="siimple-tag siimple-tag--error siimple-hover"
+              style={btn}
+              onClick={() => props.handleRemove(i)}
+            >
+              Delete
+            </div>
+          </li>
+        );
+      })}
+      ;
+    </ul>
+  </div>
 );
 
 export default List;

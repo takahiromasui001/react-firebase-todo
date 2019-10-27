@@ -1,0 +1,15 @@
+.todo-list {
+  ul {
+    padding-inline-start: 0;
+
+    .siimple--display-flex {
+      align-items: center;
+      .delete-button {
+        margin-right: auto;
+      }
+      > :last-child {
+        margin: 0 0 0 auto;
+      }
+    }
+  }
+}
