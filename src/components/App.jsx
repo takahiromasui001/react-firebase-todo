@@ -13,7 +13,6 @@ const db = firebase.firestore();
 export default class App extends Component {
   constructor(props) {
     super(props);
-    // console.log(this.getTodoFromFirestore());
     this.state = {
       todos: []
     };
@@ -21,46 +20,44 @@ export default class App extends Component {
     this.handleRemove = this.handleRemove.bind(this);
   }
 
+  async getAllTodo() {
+    const querySnapshot = await db.collection("todo").get();
+    const newTodos = querySnapshot.docs.map(doc => {
+      return { id: doc.id, title: doc.data().name };
+    });
+    this.setState({ todos: newTodos });
+  }
+
+  async handleAdd(event) {
+    // TODO: preventDefaultはこの手の操作で必須なのか？要調査。
+    // TODO: 例外処理
+    event.preventDefault();
+    event.persist();
+
+    const title = event.target.title.value;
+    const querySnapshot = await db.collection("todo").add({ name: title });
+    const newTodos = this.state.todos;
+
+    newTodos.push({ id: querySnapshot.id, title: title });
+    this.setState({ todos: newTodos });
+    event.target.title.value = "";
+    console.log("Document successfully written");
+  }
+
+  async handleRemove(event) {
+    // TODO: 例外処理
+    await db
+      .collection("todo")
+      .doc(this.state.todos[event].id)
+      .delete();
+    const newTodos = this.state.todos;
+    newTodos.splice(event, 1);
+    this.setState({ todos: newTodos });
+    console.log("Document successfully deleted");
+  }
+
   componentDidMount() {
-    db.collection("todo")
-      .get()
-      .then(response => {
-        response.forEach(doc => {
-          const newTodos = this.state.todos;
-          newTodos.push({ id: doc.id, title: doc.data().name });
-          this.setState({ todos: this.state.todos });
-        });
-      });
-  }
-
-  handleAdd(e) {
-    e.preventDefault();
-    console.log(e.target.title.value);
-    const title = e.target.title.value;
-    db.collection("todo")
-      .add({ name: e.target.title.value })
-      .then(docRef => {
-        const newTodos = this.state.todos;
-        newTodos.push({ id: docRef.id, title: title });
-        this.setState({ todos: this.state.todos });
-        console.log("Document successfully written");
-      });
-    e.target.title.value = "";
-  }
-
-  handleRemove(e) {
-    console.log(this.state.todos[e].id);
-    db.collection("todo")
-      .doc(this.state.todos[e].id)
-      .delete()
-      .then(() => {
-        console.log("Document successfully deleted");
-        const newTodos = this.state.todos;
-        newTodos.splice(e, 1);
-        this.setState({ todos: newTodos });
-      });
-    // this.state.todos.splice(e, 1);
-    // this.setState({ todos: this.state.todo });
+    this.getAllTodo();
   }
 
   render() {
@@ -71,8 +68,6 @@ export default class App extends Component {
         </h1>
         <Form handleAdd={this.handleAdd} />
         <div className="siimple-rule"></div>
-        {console.log(this.state.todos)}
-        {console.log(this.state.todos)}
         <List todos={this.state.todos} handleRemove={this.handleRemove} />
       </div>
     );

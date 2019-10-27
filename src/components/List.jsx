@@ -10,7 +10,6 @@ let btn = {
 
 const List = props => (
   <ul>
-    {console.log(props.todos)}
     {props.todos.map((todo, i) => {
       return (
         <li
