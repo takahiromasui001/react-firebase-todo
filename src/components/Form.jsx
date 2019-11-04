@@ -2,7 +2,7 @@ import React from "react";
 
 const Form = props => {
   return (
-    <form className="siimple-form" onSubmit={props.handleAdd}>
+    <form className="siimple-form" onSubmit={props.handleAdd} id="test">
       <div className="siimple-form-field">
         <label className="siimple-label siimple--color-white">
           Your todo!:
